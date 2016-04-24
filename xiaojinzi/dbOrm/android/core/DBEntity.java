@@ -6,14 +6,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import xiaojinzi.android.dbOrm.annotation.Column;
-import xiaojinzi.android.dbOrm.annotation.Table;
-import xiaojinzi.android.dbOrm.core.exception.AutoPKException;
-import xiaojinzi.android.dbOrm.core.exception.TableNameNotFoundException;
-import xiaojinzi.android.util.log.L;
-import xiaojinzi.java.reflection.ReflectionUtil;
-import xiaojinzi.java.util.ArrayUtil;
-import xiaojinzi.java.util.StringUtil;
+import xiaojinzi.base.android.log.L;
+import xiaojinzi.base.java.reflection.ReflectionUtil;
+import xiaojinzi.base.java.util.ArrayUtil;
+import xiaojinzi.base.java.util.StringUtil;
+import xiaojinzi.dbOrm.android.annotation.Column;
+import xiaojinzi.dbOrm.android.annotation.Table;
+import xiaojinzi.dbOrm.android.core.exception.AutoPKException;
+import xiaojinzi.dbOrm.android.core.exception.TableNameNotFoundException;
+
 
 /**
  * 这个类保存了一个实体对象和数据库中 <br>
@@ -297,7 +298,6 @@ public class DBEntity {
 	 * 如果没有就抛出异常{@link TableNameNotFoundException}
 	 *
 	 * @param clazz
-	 * @param sqlEntity
 	 */
 	private static String findTableNameFromClass(Class<? extends Object> clazz) {
 		if (clazz.isAnnotationPresent(Table.class)) { // 如果这个类上有Table的注解
@@ -380,9 +380,8 @@ public class DBEntity {
 
 	/**
 	 * 添加某一个标识对应的数据字段
-	 *
 	 * @param flag
-	 * @param fs
+	 * @param obs
 	 */
 	private void addField(String flag, Object[] obs) {
 		Field[] fields = new Field[obs.length];
